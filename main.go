@@ -44,8 +44,9 @@ func QuoteHandler(w http.ResponseWriter, r *http.Request) {
 	quote, err := ep.FetchQuote()
 	if err != nil {
 		fmt.Printf("error")
+		quote.Author = "the consumer"
+		quote.Text = "ERROR contacting the producer."
 	}
-	fmt.Printf("Quote: %+v", quote)
 	if err := template.ExecuteTemplate(w, "index.html", quote); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
