@@ -27,7 +27,7 @@ func QuoteHandler(w http.ResponseWriter, r *http.Request) {
 	var ep Endpoint
 	if cfenv.IsRunningOnCF() {
 		appEnv, _ := cfenv.Current()
-		service, _ := appEnv.Services.WithName("producer")
+		service, _ := appEnv.Services.WithName("producer-endpoint")
 		url := fmt.Sprintf("%v", service.Credentials["url"])
 		port := service.Credentials["port"].(int)
 		ep = Endpoint{
