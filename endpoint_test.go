@@ -30,3 +30,19 @@ func TestFetchQuote(t *testing.T) {
 		t.Errorf("Quote does not match. Expected: %+v. Received: %+v.", expectedQuote, quote)
 	}
 }
+
+func TestGetPortFromString(t *testing.T) {
+	var i interface{} = "8080"
+	port, _ := GetPort(i)
+	if port != 8080 {
+		t.Errorf("Parsing port from string failed")
+	}
+}
+
+func TestGetPortFromFloat64(t *testing.T) {
+	var i interface{} = float64(8080)
+	port, _ := GetPort(i)
+	if port != 8080 {
+		t.Errorf("Parsing port from string failed")
+	}
+}
